@@ -1,0 +1,26 @@
+<ion-content>
+  <div class="flex-center">
+    <ion-card-header>
+      <ion-card-title>HRSolution</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Login</ion-label>
+        <ion-input type="text" [(ngModel)]="login" placeholder="Digite seu login"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Senha</ion-label>
+        <ion-input type="password" [(ngModel)]="senha" placeholder="Digite sua senha"></ion-input>
+      </ion-item>
+
+      <ion-row>
+        <ion-col>
+          <ion-button expand="block" size="full" type="submit" (click)="validaLogin()">Entrar</ion-button>
+          <a [routerLink]="['/forgot-password']" class="small-text">Esqueçeu a senha?</a>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </div>
+</ion-content>
