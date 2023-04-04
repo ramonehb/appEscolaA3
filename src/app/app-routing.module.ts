@@ -26,6 +26,18 @@ const routes: Routes = [
   {
     path: 'forgot-password',
     loadChildren: () => import('./componetes/forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
+  },
+  {
+    path: 'configuration',
+    loadChildren: () => import('./componetes/configuration/configuration.module').then( m => m.ConfigurationPageModule)
+  },
+  {
+    path: 'change-password',
+    loadChildren: () => import('./componetes/change-password/change-password.module').then( m => m.ChangePasswordPageModule)
+  },
+  {
+    path: 'aluno-detalhe',
+    loadChildren: () => import('./componetes/aluno/aluno-detalhe/aluno-detalhe.module').then( m => m.ProfessorDetalhePageModule)
   }
 ];
 

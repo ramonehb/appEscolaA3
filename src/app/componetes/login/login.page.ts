@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, ToastController } from '@ionic/angular';
 import { AuthService } from '../../services/Auth.service';
@@ -24,7 +24,11 @@ export class LoginPage implements OnInit {
     ]
   };
 
-  constructor(private auth: AuthService, private router: Router, private alertController: AlertController, private toast: ToastController, private formBuilder: FormBuilder) {
+  constructor(private auth: AuthService, 
+              private router: Router, 
+              private alertController: AlertController, 
+              private toast: ToastController, 
+              private formBuilder: FormBuilder) {
     this.formLogin = this.formBuilder.group({
       login: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(15)])],
       senha: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(15)])]

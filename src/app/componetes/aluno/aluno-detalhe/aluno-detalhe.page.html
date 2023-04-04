@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Cadastro de aluno</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="formCadastroAluno">
+
+    <ion-item >
+      <ion-label position="floating">Nome</ion-label>
+      <ion-input type="text" formControlName="nome"></ion-input>
+      <ng-container *ngFor="let erro of mensagens.nome">
+        <p
+        *ngIf="f.nome.errors?.[erro.tipo] && f.nome.touched">
+          {{erro.mensagem}}
+        </p>
+      </ng-container>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">CPF</ion-label>
+      <ion-input type="text" formControlName="cpf"></ion-input>
+      <ng-container *ngFor="let erro of mensagens.cpf">
+        <p
+        *ngIf="f.cpf.errors?.[erro.tipo] && (f.cpf.touched || f.cpf.dirty)">
+          {{erro.mensagem}}
+        </p>
+      </ng-container>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Data de nascimento</ion-label>
+      <ion-input type="text" formControlName="dataNascimento"></ion-input>
+      <ng-container *ngFor="let erro of mensagens.dataNascimento">
+        <p
+        *ngIf="f.dataNascimento.errors?.[erro.tipo] && (f.dataNascimento.touched || f.dataNascimento.dirty)">
+          {{erro.mensagem}}
+        </p>
+      </ng-container>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">E-mail</ion-label>
+      <ion-input type="email" formControlName="email"></ion-input>
+      <ng-container *ngFor="let erro of mensagens.email">
+        <p
+        *ngIf="f.email.errors?.[erro.tipo] && (f.email.touched || f.email.dirty)">
+          {{erro.mensagem}}
+        </p>
+      </ng-container>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="floating">RA</ion-label>
+      <ion-input type="text" formControlName="email"></ion-input>
+    </ion-item>
+
+    <ion-row>
+      <ion-col>
+        <ion-button type="submit" expand="block" [disabled]="!formCadastroAluno.valid">Cadastrar</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

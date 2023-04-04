@@ -10,7 +10,9 @@ export class AppComponent {
     { title: 'Calendario', url: '/folder/Calendario', icon: 'calendar' },
     { title: 'Alunos', url: '/folder/Alunos', icon: 'people' },
     { title: 'Disciplinas', url: '/folder/Disciplinas', icon: 'bookmarks' },
+    { title: 'Cadastrar aluno', url: '/aluno-detalhe', icon: 'school' },
     { title: 'Cadastrar usuário', url: '/registration', icon: 'person-add' },
+    { title: 'Configurações', url: '/configuration', icon: 'cog' },
     { title: 'Sair', url: '/', icon: 'exit' }
   ];
   constructor() {}
