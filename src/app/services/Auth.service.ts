@@ -8,6 +8,6 @@ export class AuthService {
 constructor() { }
 
   validateLogin(username: string, password: string): boolean {
-    return (username === 'admin' && password === '123')
+    return (username === 'admin' && password === '123' || username === 'humberto' && password === '123')
   }
 }

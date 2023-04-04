@@ -56,12 +56,12 @@
     
     <ion-item>
       <ion-label position="floating">RA</ion-label>
-      <ion-input type="text" formControlName="email"></ion-input>
+      <ion-input type="text" [disabled]="true"></ion-input>
     </ion-item>
 
     <ion-row>
       <ion-col>
-        <ion-button type="submit" expand="block" [disabled]="!formCadastroAluno.valid">Cadastrar</ion-button>
+        <ion-button type="submit" expand="block" [disabled]="!formCadastroAluno.valid" (click)="cadastrarAluno()">Cadastrar</ion-button>
       </ion-col>
     </ion-row>
   </form>

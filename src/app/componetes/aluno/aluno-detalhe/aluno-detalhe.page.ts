@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AlertService } from 'src/app/services/Alert.service';
 
 @Component({
   selector: 'app-aluno-detalhe',
@@ -26,10 +27,9 @@ export class AlunoDetalhePage implements OnInit {
     email: [
       {tipo: 'required', mensagem: 'E-mail é obrigatório.'},
       {tipo: 'maxLength', mensagem: 'E-mail deve ter no máximo 100 caracter'}
-    ]
-  };
-  
-  constructor(private formBuilder: FormBuilder) {
+    ]};
+
+  constructor(private formBuilder: FormBuilder, private alert: AlertService) {
     this.formCadastroAluno = this.formBuilder.group({
       nome: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(100)])],
       cpf: ['', Validators.compose([Validators.required, Validators.maxLength(11)])],
@@ -47,5 +47,9 @@ export class AlunoDetalhePage implements OnInit {
 
   get f(): any {
     return this.formCadastroAluno.controls;
+  }
+
+  public cadastrarAluno(){
+    this.alert.toastAlert('Aluno cadastrado com sucesso', 'success');
   }
 }

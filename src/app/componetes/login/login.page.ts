@@ -1,14 +1,15 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController, ToastController } from '@ionic/angular';
 import { AuthService } from '../../services/Auth.service';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { AlertService } from 'src/app/services/Alert.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
+
 export class LoginPage implements OnInit {
   formLogin: FormGroup;
   mensagens = {
@@ -26,8 +27,7 @@ export class LoginPage implements OnInit {
 
   constructor(private auth: AuthService, 
               private router: Router, 
-              private alertController: AlertController, 
-              private toast: ToastController, 
+              private alert: AlertService,  
               private formBuilder: FormBuilder) {
     this.formLogin = this.formBuilder.group({
       login: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(15)])],
@@ -41,20 +41,10 @@ export class LoginPage implements OnInit {
   validaLogin() {
     if (this.auth.validateLogin(this.formLogin.get('login')?.value, this.formLogin.get('senha')?.value)) {
       this.router.navigate(['/folder/Aulas']);
-      this.toastAlert(`Bem vindo ${this.formLogin.get('login')?.value}`, 'success')
+      this.alert.toastAlert(`Bem vindo ${this.formLogin.get('login')?.value}`, 'success')
     } else {
-      this.toastAlert('Erro login/senha inválido', 'danger')
+      this.alert.toastAlert('Login/Senha inválido', 'danger')
     }
-  }
-
-  async toastAlert(mensagem: string, cor: string) {
-    const toast = await this.toast.create({
-      message: mensagem,
-      color: cor,
-      duration: 2000
-    });
-
-    toast.present();
   }
 
   get f(): any {
@@ -65,11 +55,3 @@ export class LoginPage implements OnInit {
     return { 'is-invalid': campo.errors && campo.touched};
   }
 }
-/*const alert = await this.alertController.create({
-        header: 'Atenção',
-        message: 'Usuário/Senha inválido',
-        buttons: ['OK'],
-      });
-
-      await alert.present();
-      */

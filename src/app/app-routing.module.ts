@@ -12,10 +12,6 @@ const routes: Routes = [
     loadChildren: () => import('./componetes/folder/folder.module').then( m => m.FolderPageModule)
   },
   {
-    path: 'clientes',
-    loadChildren: () => import('./componetes/clientes/clientes.module').then( m => m.ClientesPageModule)
-  },
-  {
     path: 'login',
     loadChildren: () => import('./componetes/login/login.module').then( m => m.LoginPageModule)
   },

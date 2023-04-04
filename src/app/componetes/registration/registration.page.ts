@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertService } from 'src/app/services/Alert.service';
 
 @Component({
   selector: 'app-registration',
@@ -6,10 +7,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./registration.page.scss'],
 })
 export class RegistrationPage implements OnInit {
+  constructor(private alert: AlertService) { }
 
-  constructor() { }
+  mostrarSenha: boolean = false;
+  mostrarSenhaConfiirma: boolean = false;
 
   ngOnInit() {
   }
 
+  cadastrarUsuario(){
+    this.alert.toastAlert('Usuário cadastrado com sucesso', 'success');
+  }
+
+  toggleMostrarSenha() {
+    this.mostrarSenha = !this.mostrarSenha;
+  }
+  toggleMostrarSenhaConfirma() {
+    this.mostrarSenhaConfiirma = !this.mostrarSenhaConfiirma;
+  }
 }

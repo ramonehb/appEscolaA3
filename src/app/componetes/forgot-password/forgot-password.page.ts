@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertService } from 'src/app/services/Alert.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ForgotPasswordPage implements OnInit {
 
-  constructor() { }
+  constructor(private alert: AlertService) { }
 
   ngOnInit() {
   }
 
+  recuperarSenha(){
+    this.alert.toastAlert('E-mail enviado', 'success');
+  }
 }
