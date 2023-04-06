@@ -12,6 +12,7 @@ import { AlertService } from 'src/app/services/Alert.service';
 
 export class LoginPage implements OnInit {
   formLogin: FormGroup;
+  mostrarSenha: boolean = false;
   mensagens = {
     login: [
       {tipo: 'required', mensagem: 'Login é obrigatório.'},
@@ -25,9 +26,9 @@ export class LoginPage implements OnInit {
     ]
   };
 
-  constructor(private auth: AuthService, 
-              private router: Router, 
-              private alert: AlertService,  
+  constructor(private auth: AuthService,
+              private router: Router,
+              private alert: AlertService,
               private formBuilder: FormBuilder) {
     this.formLogin = this.formBuilder.group({
       login: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(15)])],
@@ -53,5 +54,9 @@ export class LoginPage implements OnInit {
 
   public formValidator(campo: FormControl | AbstractControl): any {
     return { 'is-invalid': campo.errors && campo.touched};
+  }
+
+  toggleMostrarSenhaConfirma() {
+    this.mostrarSenha = !this.mostrarSenha;
   }
 }

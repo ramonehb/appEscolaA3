@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AlertService } from 'src/app/services/Alert.service';
-
 @Component({
   selector: 'app-aluno-detalhe',
   templateUrl: './aluno-detalhe.page.html',
@@ -19,10 +18,12 @@ export class AlunoDetalhePage implements OnInit {
     ,
     cpf: [
       {tipo: 'required', mensagem: 'CPF é obrigatório.'},
+      {tipo: 'minLength', mensagem: 'CPF deve ter no mínimo 11 caracter'},
       {tipo: 'maxLength', mensagem: 'CPF deve ter no máximo 11 caracter'}
     ],
     dataNascimento: [
-      {tipo: 'required', mensagem: 'Data de nascimento é obrigatório.'}
+      {tipo: 'required', mensagem: 'Data de nascimento é obrigatório.'},
+      {tipo: 'minLength', mensagem: 'Data de nascimento padrão 00/00/0000'}
     ],
     email: [
       {tipo: 'required', mensagem: 'E-mail é obrigatório.'},
@@ -32,8 +33,8 @@ export class AlunoDetalhePage implements OnInit {
   constructor(private formBuilder: FormBuilder, private alert: AlertService) {
     this.formCadastroAluno = this.formBuilder.group({
       nome: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(100)])],
-      cpf: ['', Validators.compose([Validators.required, Validators.maxLength(11)])],
-      dataNascimento: ['', Validators.compose([Validators.required, Validators.maxLength(10)])],
+      cpf: ['', Validators.compose([Validators.required, Validators.minLength(11), Validators.maxLength(11)])],
+      dataNascimento: ['', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
       email: ['', Validators.compose([Validators.required, Validators.email, Validators.maxLength(100)])]
     });
    }

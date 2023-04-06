@@ -22,6 +22,7 @@ export class RegistrationPage implements OnInit {
   toggleMostrarSenha() {
     this.mostrarSenha = !this.mostrarSenha;
   }
+
   toggleMostrarSenhaConfirma() {
     this.mostrarSenhaConfiirma = !this.mostrarSenhaConfiirma;
   }
