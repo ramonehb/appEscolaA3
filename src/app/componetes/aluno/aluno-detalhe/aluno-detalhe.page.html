@@ -26,7 +26,7 @@
       <ion-input type="text" formControlName="cpf"></ion-input>
       <ng-container *ngFor="let erro of mensagens.cpf">
         <p
-        *ngIf="f.cpf.errors?.required && (f.dataNascimento.touched || f.dataNascimento.dirty)">
+        *ngIf="f.cpf.errors?.required && (f.cpf.touched || f.cpf.dirty)">
           {{erro.mensagem}}
         </p>
       </ng-container>
@@ -48,7 +48,7 @@
       <ion-input type="email" formControlName="email"></ion-input>
       <ng-container *ngFor="let erro of mensagens.email">
         <p
-        *ngIf="f.email.errors?.[erro.tipo] && (f.email.touched || f.email.dirty)">
+        *ngIf="f.email.errors?.required&& (f.email.touched || f.email.dirty)">
           {{erro.mensagem}}
         </p>
       </ng-container>

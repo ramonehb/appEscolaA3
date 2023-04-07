@@ -1,6 +1,5 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { ChangePasswordPage } from '../change-password/change-password.page';
 
 @Component({
   selector: 'app-configuration',

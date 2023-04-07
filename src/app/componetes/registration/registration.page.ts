@@ -58,10 +58,6 @@ export class RegistrationPage implements OnInit {
     this.mostrarSenhaConfiirma = !this.mostrarSenhaConfiirma;
   }
 
-  public formValidator(campo: FormControl | AbstractControl): any {
-    return { 'is-invalid': campo.errors && campo.touched};
-  }
-
   get f(): any {
     return this.formUsuario.controls;
   }

@@ -52,10 +52,6 @@ export class LoginPage implements OnInit {
     return this.formLogin.controls;
   }
 
-  public formValidator(campo: FormControl | AbstractControl): any {
-    return { 'is-invalid': campo.errors && campo.touched};
-  }
-
   toggleMostrarSenhaConfirma() {
     this.mostrarSenha = !this.mostrarSenha;
   }
