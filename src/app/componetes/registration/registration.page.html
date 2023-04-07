@@ -8,32 +8,65 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <form>
+  <form  [formGroup]="formUsuario">
     <ion-item lines="full">
       <ion-label position="floating">Nome completo</ion-label>
-      <ion-input type="text" required></ion-input>
+      <ion-input type="text" required formControlName="nome"></ion-input>
+      <ng-container *ngFor="let erro of mensagens.nome">
+        <p
+        *ngIf="f.nome.errors?.required &&  (f.nome.touched || f.nome.dirty)">
+          {{erro.mensagem}}
+        </p>
+      </ng-container>
     </ion-item>
+
     <ion-item lines="full">
       <ion-label position="floating">Login</ion-label>
-      <ion-input type="text" required></ion-input>
+      <ion-input type="text" required formControlName="login"></ion-input>
+      <ng-container *ngFor="let erro of mensagens.login">
+        <p
+        *ngIf="f.login.errors?.required && (f.login.touched || f.login.dirty)">
+          {{erro.mensagem}}
+        </p>
+      </ng-container>
     </ion-item>
+
     <ion-item lines="full">
       <ion-label position="floating">E-mail</ion-label>
-      <ion-input type="text" required></ion-input>
+      <ion-input type="text" required formControlName="email"></ion-input>
+      <ng-container *ngFor="let erro of mensagens.email">
+        <p
+        *ngIf="f.email.errors?.required &&  (f.email.touched || f.email.dirty)">
+          {{erro.mensagem}}
+        </p>
+      </ng-container>
     </ion-item>
+
     <ion-item lines="full">
       <ion-label position="floating">Senha</ion-label>
-      <ion-input [type]="mostrarSenha ? 'text' : 'password'" required></ion-input>
+      <ion-input [type]="mostrarSenha ? 'text' : 'password'" required formControlName="senha"></ion-input>
+      <ng-container *ngFor="let erro of mensagens.senha">
+        <p
+        *ngIf="f.senha.errors?.required &&  (f.senha.touched || f.senha.dirty)">
+          {{erro.mensagem}}
+        </p>
+      </ng-container>
       <ion-icon [name]="mostrarSenha ? 'eye' : 'eye-off'" slot="end" (click)="toggleMostrarSenha()"></ion-icon>
     </ion-item>
     <ion-item lines="full">
       <ion-label position="floating">Confirmar senha</ion-label>
-      <ion-input [type]="mostrarSenhaConfiirma ? 'text' : 'password'" required></ion-input>
+      <ion-input [type]="mostrarSenhaConfiirma ? 'text' : 'password'" required formControlName="senhaConfirmacao"></ion-input>
+      <ng-container *ngFor="let erro of mensagens.senhaConfirmacao">
+        <p
+        *ngIf="f.senhaConfirmacao.errors?.required &&  (f.senhaConfirmacao.touched || f.senhaConfirmacao.dirty)">
+          {{erro.mensagem}}
+        </p>
+      </ng-container>
       <ion-icon [name]="mostrarSenhaConfiirma ? 'eye' : 'eye-off'" slot="end" (click)="toggleMostrarSenhaConfirma()"></ion-icon>
     </ion-item>
     <ion-row>
       <ion-col>
-        <ion-button type="submit" expand="block" (click)="cadastrarUsuario()">Cadastrar</ion-button>
+        <ion-button type="submit" expand="block" [disabled]="!formUsuario.valid" (click)="cadastrarUsuario()">Cadastrar</ion-button>
       </ion-col>
     </ion-row>
   </form>

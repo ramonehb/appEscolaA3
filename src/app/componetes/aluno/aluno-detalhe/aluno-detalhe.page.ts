@@ -12,18 +12,16 @@ export class AlunoDetalhePage implements OnInit {
   mensagens = {
     nome: [
       {tipo: 'required', mensagem: 'Nome é obrigatório.'},
-      {tipo: 'minLength', mensagem: 'Nome deve ter no mínimo 3 caracter'},
-      {tipo: 'maxLength', mensagem: 'Nome deve ter no máximo 100 caracter'}
+      {tipo: 'minLength', mensagem: 'Nome deve ter no mínimo 3 caracter'}
     ]
     ,
     cpf: [
       {tipo: 'required', mensagem: 'CPF é obrigatório.'},
-      {tipo: 'minLength', mensagem: 'CPF deve ter no mínimo 11 caracter'},
-      {tipo: 'maxLength', mensagem: 'CPF deve ter no máximo 11 caracter'}
+      {tipo: 'minLength', mensagem: 'CPF deve ter 11 caracteres'}
     ],
     dataNascimento: [
       {tipo: 'required', mensagem: 'Data de nascimento é obrigatório.'},
-      {tipo: 'minLength', mensagem: 'Data de nascimento padrão 00/00/0000'}
+      {tipo: 'minLength', mensagem: 'Data de nascimento dd/mm/aaaa'}
     ],
     email: [
       {tipo: 'required', mensagem: 'E-mail é obrigatório.'},

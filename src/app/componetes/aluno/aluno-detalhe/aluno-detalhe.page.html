@@ -15,7 +15,7 @@
       <ion-input type="text" formControlName="nome"></ion-input>
       <ng-container *ngFor="let erro of mensagens.nome">
         <p
-        *ngIf="f.nome.errors?.[erro.tipo] && f.nome.touched">
+        *ngIf="f.nome.errors?.required &&  (f.nome.touched || f.nome.dirty)">
           {{erro.mensagem}}
         </p>
       </ng-container>
@@ -26,7 +26,7 @@
       <ion-input type="text" formControlName="cpf"></ion-input>
       <ng-container *ngFor="let erro of mensagens.cpf">
         <p
-        *ngIf="f.cpf.errors?.required && (f.cpf.touched || f.cpf.dirty)">
+        *ngIf="f.cpf.errors?.required && (f.dataNascimento.touched || f.dataNascimento.dirty)">
           {{erro.mensagem}}
         </p>
       </ng-container>
@@ -34,14 +34,13 @@
 
     <ion-item>
       <ion-label position="floating">Data de nascimento</ion-label>
-      <!-- <ion-input type="text" formControlName="dataNascimento"></ion-input>
+      <ion-input type="text" formControlName="dataNascimento"></ion-input>
       <ng-container *ngFor="let erro of mensagens.dataNascimento">
         <p
         *ngIf="f.dataNascimento.errors?.required && (f.dataNascimento.touched || f.dataNascimento.dirty)">
           {{erro.mensagem}}
         </p>
-      </ng-container> -->
-      <ion-datetime-button datetime="datetime"></ion-datetime-button>
+      </ng-container>
     </ion-item>
 
     <ion-item>
