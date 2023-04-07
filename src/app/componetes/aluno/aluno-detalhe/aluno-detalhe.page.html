@@ -34,13 +34,14 @@
 
     <ion-item>
       <ion-label position="floating">Data de nascimento</ion-label>
-      <ion-input type="text" formControlName="dataNascimento"></ion-input>
+      <!-- <ion-input type="text" formControlName="dataNascimento"></ion-input>
       <ng-container *ngFor="let erro of mensagens.dataNascimento">
         <p
         *ngIf="f.dataNascimento.errors?.required && (f.dataNascimento.touched || f.dataNascimento.dirty)">
           {{erro.mensagem}}
         </p>
-      </ng-container>
+      </ng-container> -->
+      <ion-datetime-button datetime="datetime"></ion-datetime-button>
     </ion-item>
 
     <ion-item>
@@ -66,3 +67,9 @@
     </ion-row>
   </form>
 </ion-content>
+
+<ion-modal [keepContentsMounted]="true">
+  <ng-template>
+    <ion-datetime id="datetime"></ion-datetime>
+  </ng-template>
+</ion-modal>
