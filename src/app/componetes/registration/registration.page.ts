@@ -18,6 +18,7 @@ export class RegistrationPage implements OnInit {
     ,
     login: [
       {tipo: 'required', mensagem: 'Login é obrigatório.'},
+      {tipo: 'minLength', mensagem: 'Login deve ter no mínimo 3 caracter.'},
       {tipo: 'maxLength', mensagem: 'Login deve ter no máximo 20 caracter.'}
     ],
     senha: [
@@ -27,7 +28,8 @@ export class RegistrationPage implements OnInit {
       {tipo: 'required', mensagem: 'Confirme a senha.'},
     ],
     email: [
-      {tipo: 'required', mensagem: 'E-mail é obrigatório.'}
+      {tipo: 'required', mensagem: 'E-mail é obrigatório.'},
+      {tipo: 'email', mensagem: 'Digite um e-mail valido.'}
     ]};
 
   constructor(private alert: AlertService, private formBuilder: FormBuilder) {

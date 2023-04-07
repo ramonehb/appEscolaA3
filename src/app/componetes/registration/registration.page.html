@@ -14,7 +14,7 @@
       <ion-input type="text" required formControlName="nome"></ion-input>
       <ng-container *ngFor="let erro of mensagens.nome">
         <p
-        *ngIf="f.nome.errors?.required &&  (f.nome.touched || f.nome.dirty)">
+        *ngIf="f.nome.hasError(erro.tipo) &&  (f.nome.touched || f.nome.dirty)">
           {{erro.mensagem}}
         </p>
       </ng-container>
@@ -25,7 +25,7 @@
       <ion-input type="text" required formControlName="login"></ion-input>
       <ng-container *ngFor="let erro of mensagens.login">
         <p
-        *ngIf="f.login.errors?.required && (f.login.touched || f.login.dirty)">
+        *ngIf="f.login.hasError(erro.tipo) && (f.login.touched || f.login.dirty)">
           {{erro.mensagem}}
         </p>
       </ng-container>
@@ -36,7 +36,7 @@
       <ion-input type="text" required formControlName="email"></ion-input>
       <ng-container *ngFor="let erro of mensagens.email">
         <p
-        *ngIf="f.email.errors?.required &&  (f.email.touched || f.email.dirty)">
+        *ngIf="f.email.hasError(erro.tipo) &&  (f.email.touched || f.email.dirty)">
           {{erro.mensagem}}
         </p>
       </ng-container>
@@ -47,7 +47,7 @@
       <ion-input [type]="mostrarSenha ? 'text' : 'password'" required formControlName="senha"></ion-input>
       <ng-container *ngFor="let erro of mensagens.senha">
         <p
-        *ngIf="f.senha.errors?.required &&  (f.senha.touched || f.senha.dirty)">
+        *ngIf="f.senha.hasError(erro.tipo) &&  (f.senha.touched || f.senha.dirty)">
           {{erro.mensagem}}
         </p>
       </ng-container>
@@ -58,7 +58,7 @@
       <ion-input [type]="mostrarSenhaConfiirma ? 'text' : 'password'" required formControlName="senhaConfirmacao"></ion-input>
       <ng-container *ngFor="let erro of mensagens.senhaConfirmacao">
         <p
-        *ngIf="f.senhaConfirmacao.errors?.required &&  (f.senhaConfirmacao.touched || f.senhaConfirmacao.dirty)">
+        *ngIf="f.senhaConfirmacao.hasError(erro.tipo) &&  (f.senhaConfirmacao.touched || f.senhaConfirmacao.dirty)">
           {{erro.mensagem}}
         </p>
       </ng-container>

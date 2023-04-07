@@ -11,7 +11,8 @@ export class ForgotPasswordPage implements OnInit {
   formEsqueciSenha: FormGroup;
   mensagens = {
     email: [
-      {tipo: 'required', mensagem: 'E-mail é obrigatório.'}
+      {tipo: 'required', mensagem: 'E-mail é obrigatório.'},
+      {tipo: 'email', mensagem: 'Digite um e-mail valido.'}
     ]};
 
   constructor(private alert: AlertService,  private formBuilder: FormBuilder) {

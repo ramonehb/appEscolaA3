@@ -11,7 +11,7 @@
           <ion-input type="text" placeholder="Digite seu login" formControlName="login"></ion-input>
           <ng-container *ngFor="let erro of mensagens.login">
             <p
-            *ngIf="f.login.errors?.[erro.tipo] && (f.login.touched || f.login.dirty)">
+            *ngIf="f.login.hasError(erro.tipo) && (f.login.touched || f.login.dirty)">
               {{erro.mensagem}}
             </p>
           </ng-container>
@@ -23,7 +23,7 @@
           <ion-icon [name]="mostrarSenha ? 'eye' : 'eye-off'" slot="end" (click)="toggleMostrarSenhaConfirma()"></ion-icon>
           <ng-container *ngFor="let erro of mensagens.senha">
             <p
-            *ngIf="f.senha.errors?.[erro.tipo]  && (f.senha.touched || f.senha.dirty)">
+            *ngIf="f.senha.hasError(erro.tipo)  && (f.senha.touched || f.senha.dirty)">
               {{erro.mensagem}}
             </p>
           </ng-container>

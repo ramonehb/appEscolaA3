@@ -17,31 +17,28 @@ export class AlunoDetalhePage implements OnInit {
     ,
     cpf: [
       {tipo: 'required', mensagem: 'CPF é obrigatório.'},
-      {tipo: 'minLength', mensagem: 'CPF deve ter 11 caracteres'}
+      {tipo: 'minLength', mensagem: 'CPF deve ter 11 caracteres'},
+      {tipo: 'maxLength', mensagem: 'CPF deve ter no máximo 11 caracteres.'}
     ],
     dataNascimento: [
-      {tipo: 'required', mensagem: 'Data de nascimento é obrigatório.'},
-      {tipo: 'minLength', mensagem: 'Data de nascimento dd/mm/aaaa'}
+      {tipo: 'required', mensagem: 'Data de nascimento é obrigatório.'}
     ],
     email: [
       {tipo: 'required', mensagem: 'E-mail é obrigatório.'},
-      {tipo: 'maxLength', mensagem: 'E-mail deve ter no máximo 100 caracter'}
+      {tipo: 'email', mensagem: 'Digite um e-mail valido.'},
+      {tipo: 'maxLength', mensagem: 'E-mail deve ter no máximo 100 caracteres.'}
     ]};
 
   constructor(private formBuilder: FormBuilder, private alert: AlertService) {
     this.formCadastroAluno = this.formBuilder.group({
       nome: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(100)])],
       cpf: ['', Validators.compose([Validators.required, Validators.minLength(11), Validators.maxLength(11)])],
-      dataNascimento: ['', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
+      dataNascimento: ['', Validators.required],
       email: ['', Validators.compose([Validators.required, Validators.email, Validators.maxLength(100)])]
     });
    }
 
   ngOnInit() {
-  }
-
-  public formValidator(campo: FormControl | AbstractControl): any {
-    return { 'is-invalid': campo.errors && campo.touched};
   }
 
   get f(): any {

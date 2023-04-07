@@ -9,13 +9,12 @@
 
 <ion-content>
   <form [formGroup]="formCadastroAluno">
-
     <ion-item >
       <ion-label position="floating">Nome</ion-label>
       <ion-input type="text" formControlName="nome"></ion-input>
       <ng-container *ngFor="let erro of mensagens.nome">
         <p
-        *ngIf="f.nome.errors?.required &&  (f.nome.touched || f.nome.dirty)">
+        *ngIf="f.nome.hasError(erro.tipo)  &&  (f.nome.touched || f.nome.dirty)">
           {{erro.mensagem}}
         </p>
       </ng-container>
@@ -26,7 +25,7 @@
       <ion-input type="text" formControlName="cpf"></ion-input>
       <ng-container *ngFor="let erro of mensagens.cpf">
         <p
-        *ngIf="f.cpf.errors?.required && (f.cpf.touched || f.cpf.dirty)">
+        *ngIf="f.cpf.hasError(erro.tipo)  && (f.cpf.touched || f.cpf.dirty)">
           {{erro.mensagem}}
         </p>
       </ng-container>
@@ -34,10 +33,10 @@
 
     <ion-item>
       <ion-label position="floating">Data de nascimento</ion-label>
-      <ion-input type="text" formControlName="dataNascimento"></ion-input>
+      <ion-input type="date" formControlName="dataNascimento"></ion-input>
       <ng-container *ngFor="let erro of mensagens.dataNascimento">
         <p
-        *ngIf="f.dataNascimento.errors?.required && (f.dataNascimento.touched || f.dataNascimento.dirty)">
+        *ngIf="f.dataNascimento.hasError(erro.tipo) && (f.dataNascimento.touched || f.dataNascimento.dirty)">
           {{erro.mensagem}}
         </p>
       </ng-container>
@@ -48,7 +47,7 @@
       <ion-input type="email" formControlName="email"></ion-input>
       <ng-container *ngFor="let erro of mensagens.email">
         <p
-        *ngIf="f.email.errors?.required&& (f.email.touched || f.email.dirty)">
+        *ngIf="f.email.hasError(erro.tipo) && (f.email.touched || f.email.dirty)">
           {{erro.mensagem}}
         </p>
       </ng-container>
