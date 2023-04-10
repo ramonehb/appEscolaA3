@@ -49,7 +49,7 @@ export class RegistrationPage implements OnInit {
   }
 
   cadastrarUsuario(){
-    this.alert.toastAlert('Usuário cadastrado com sucesso', 'success');
+    this.alert.toastAlert('Usuário cadastrado com sucesso', 'success', 'top');
   }
 
   toggleMostrarSenha() {

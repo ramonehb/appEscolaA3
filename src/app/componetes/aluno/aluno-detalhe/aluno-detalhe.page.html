@@ -43,6 +43,13 @@
     </ion-item>
 
     <ion-item>
+      <ion-select aria-label="Sexo" interface="popover" placeholder="Selecione o sexo">
+        <ion-select-option value="M">Masculino</ion-select-option>
+        <ion-select-option value="F">Feminino</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
       <ion-label position="floating">E-mail</ion-label>
       <ion-input type="email" formControlName="email"></ion-input>
       <ng-container *ngFor="let erro of mensagens.email">

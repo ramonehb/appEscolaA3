@@ -30,7 +30,12 @@ const routes: Routes = [
   {
     path: 'aluno-detalhe',
     loadChildren: () => import('./componetes/aluno/aluno-detalhe/aluno-detalhe.module').then( m => m.ProfessorDetalhePageModule)
+  },
+  {
+    path: 'aluno',
+    loadChildren: () => import('./componetes/aluno/aluno.module').then( m => m.AlunoPageModule)
   }
+
 ];
 
 @NgModule({

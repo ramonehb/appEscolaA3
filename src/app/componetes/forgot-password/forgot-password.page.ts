@@ -25,7 +25,7 @@ export class ForgotPasswordPage implements OnInit {
   }
 
   recuperarSenha(){
-    this.alert.toastAlert('E-mail enviado', 'success');
+    this.alert.toastAlert('E-mail enviado', 'success', 'top');
   }
 
   get f(): any {

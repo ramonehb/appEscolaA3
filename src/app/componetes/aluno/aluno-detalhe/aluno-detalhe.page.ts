@@ -46,6 +46,6 @@ export class AlunoDetalhePage implements OnInit {
   }
 
   public cadastrarAluno(){
-    this.alert.toastAlert('Aluno cadastrado com sucesso', 'success');
+    this.alert.toastAlert('Aluno cadastrado com sucesso', 'success', 'top');
   }
 }

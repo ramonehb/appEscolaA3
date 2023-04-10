@@ -1,0 +1,19 @@
+.centered-card {
+  font-size: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+img {
+  width: 68%;
+  height: 8rem;
+  border-radius: 50%;
+}
+ion-card-title {
+  font-size: 1.4rem;
+}
+ion-card-subtitle {
+    font-size: 0.8rem;
+}
