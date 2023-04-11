@@ -17,8 +17,8 @@ const routes: Routes = [
     loadChildren: () => import('./componetes/login/login.module').then( m => m.LoginPageModule)
   },
   {
-    path: 'forgot-password',
-    loadChildren: () => import('./componetes/forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
+    path: 'recuperar-senha',
+    loadChildren: () => import('./componetes/recuperar-senha/recuperar-senha.module').then( m => m.RecuperarSenhaPageModule)
   },
   {
     path: 'configuration',

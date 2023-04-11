@@ -33,7 +33,7 @@ export class UsuarioDetalhePage implements OnInit {
       {tipo: 'email', mensagem: 'Digite um e-mail valido.'}
     ]};
 
-  constructor(private alert: AlertService, private formBuilder: FormBuilder,  private routerActive: ActivatedRoute) {
+  constructor(private alert: AlertService, private formBuilder: FormBuilder,  private routerActive: ActivatedRoute, private router: Router) {
     this.formUsuario = this.formBuilder.group({
       nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(70)]],
       login: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
@@ -52,6 +52,7 @@ export class UsuarioDetalhePage implements OnInit {
 
   cadastrarUsuario(){
     this.alert.toastAlert('Usuário cadastrado com sucesso', 'success', 'top');
+    this.router.navigate(['/usuario']);
   }
 
   toggleMostrarSenha() {

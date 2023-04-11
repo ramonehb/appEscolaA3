@@ -32,7 +32,7 @@ export class AlunoDetalhePage implements OnInit {
       {tipo: 'maxLength', mensagem: 'E-mail deve ter no máximo 100 caracteres.'}
     ]};
 
-  constructor(private formBuilder: FormBuilder, private alert: AlertService, private routerActive: ActivatedRoute) {
+  constructor(private formBuilder: FormBuilder, private alert: AlertService, private routerActive: ActivatedRoute, private router: Router) {
     this.formCadastroAluno = this.formBuilder.group({
       nome: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(100)])],
       cpf: ['', Validators.compose([Validators.required, Validators.minLength(11), Validators.maxLength(11)])],
@@ -51,6 +51,7 @@ export class AlunoDetalhePage implements OnInit {
 
   public cadastrarAluno(){
     this.alert.toastAlert('Aluno cadastrado com sucesso', 'success', 'top');
+    this.router.navigate(['/aluno']);
   }
 
   public carregarAluno(){
