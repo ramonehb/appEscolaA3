@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, AbstractControlOptions, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlertService } from 'src/app/services/Alert.service';
 
 @Component({
   selector: 'app-registration',
-  templateUrl: './registration.page.html',
-  styleUrls: ['./registration.page.scss'],
+  templateUrl: './usuario-detalhe.page.html',
+  styleUrls: ['./usuario-detalhe.page.scss'],
 })
-export class RegistrationPage implements OnInit {
+export class UsuarioDetalhePage implements OnInit {
 
   formUsuario: FormGroup;
   mensagens = {
@@ -32,7 +33,7 @@ export class RegistrationPage implements OnInit {
       {tipo: 'email', mensagem: 'Digite um e-mail valido.'}
     ]};
 
-  constructor(private alert: AlertService, private formBuilder: FormBuilder) {
+  constructor(private alert: AlertService, private formBuilder: FormBuilder,  private routerActive: ActivatedRoute) {
     this.formUsuario = this.formBuilder.group({
       nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(70)]],
       login: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
@@ -46,6 +47,7 @@ export class RegistrationPage implements OnInit {
   mostrarSenhaConfiirma: boolean = false;
 
   ngOnInit() {
+    this.carregarUsuario();
   }
 
   cadastrarUsuario(){
@@ -62,5 +64,10 @@ export class RegistrationPage implements OnInit {
 
   get f(): any {
     return this.formUsuario.controls;
+  }
+
+  public carregarUsuario(){
+    const id =  this.routerActive.snapshot.paramMap.get('id');
+    console.log(id);
   }
 }

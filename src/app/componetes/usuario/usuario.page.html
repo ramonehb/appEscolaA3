@@ -6,23 +6,23 @@
         <ion-icon slot="icon-only" name="person-add"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>Alunos</ion-title>
+    <ion-title>Usuários</ion-title>
   </ion-toolbar>
   <ion-toolbar>
-    <ion-searchbar placeholder="Nome do Aluno" show-clear-button="always" clear-icon="trash-bin"></ion-searchbar>
+    <ion-searchbar placeholder="Nome do usuário" show-clear-button="always" clear-icon="trash-bin"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-card *ngFor="let aluno of alunos" class="centered-card" (click)="detalheAluno(aluno.id)">
-    <img alt="Imagem do aluno" [src]="aluno.img"/>
+  <ion-card *ngFor="let user of usuarios" class="centered-card" (click)="detalheUsuario(user.id)">
+    <img alt="Imagem do usuário" [src]="user.img"/>
     <ion-card-header>
-      <ion-card-title>{{ aluno.nome }}</ion-card-title>
-      <ion-card-subtitle>{{ aluno.curso }}</ion-card-subtitle>
+      <ion-card-title>{{ user.nome }}</ion-card-title>
+      <ion-card-subtitle>{{ user.email }}</ion-card-subtitle>
     </ion-card-header>
   
     <ion-card-content>
-      <ion-button color="danger" (click)="excluirAluno($event, aluno.id, aluno.nome)">
+      <ion-button color="danger" (click)="excluirUsuario($event, user.id, user.nome)">
         <ion-icon name="trash"></ion-icon>
       </ion-button>
     </ion-card-content>
