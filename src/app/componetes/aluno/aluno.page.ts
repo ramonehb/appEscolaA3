@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd} from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { AlunoService } from 'src/app/services/aluno.service';
+import { Aluno } from 'src/app/models/Aluno';
 import { AlertService } from 'src/app/services/Alert.service';
+import { IonRouterOutlet } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-aluno',
@@ -10,19 +14,16 @@ import { AlertService } from 'src/app/services/Alert.service';
 })
 export class AlunoPage implements OnInit {
   handlerMessage = '';
-  alunos: { id: number, nome: string, subtitle: string, curso: string, img: string}[] = [  
-    { id: 1, nome: 'Andre Matos', subtitle: 'Developer full-stack', curso: 'Analise e desenvolvimento de sistemas', img: '../../../../assets/img/andre.jpg'}, 
-    { id: 2, nome: 'Amanda Medeiros', subtitle: 'Nutricionista', curso: 'Nutrição', img: '../../../../assets/img/amanda.jpg'},
-    { id: 3, nome: 'Roni Perreira', subtitle: 'Developer back-end' , curso: 'Analise e desenvolvimento de sistemas', img: '../../../../assets/img/roni.jpg'},
-    { id: 3, nome: 'João da Silva', subtitle: 'Developer back-end' , curso: 'Ciencias da computacao', img: '../../../../assets/img/joao.jpg'},
-    { id: 3, nome: 'Patricia Borges', subtitle: 'Administradora' , curso: 'Administração', img: '../../../../assets/img/patricia.jpg'},
-    { id: 3, nome: 'Felipe Matos', subtitle: 'Developer mobile' , curso: 'Analise e desenvolvimento de sistemas', img: '../../../../assets/img/felipe.jpg'}
-  ];
+  alunos: Aluno[] = [];
+  alunoService = new AlunoService();
 
-  constructor(private router: Router, private alertController: AlertController, private alert: AlertService) { }
+  constructor(private router: Router, private alertController: AlertController, private alert: AlertService, private ionRouterOutlet: IonRouterOutlet, private changeDetectorRef: ChangeDetectorRef) {
+    this.alunos = this.alunoService.obterAlunos();
+   }
 
   ngOnInit() {
-  }
+  this.alunos = this.alunoService.obterAlunos();
+}
 
   public detalheAluno(id: number): void {
      this.router.navigate([`/aluno-detalhe/${id}`]);
@@ -52,7 +53,8 @@ export class AlunoPage implements OnInit {
           handler: () => {
             const index = this.alunos.findIndex(a => a.id === id);
             if (index >= 0) {
-              this.alunos.splice(index, 1);
+              this.alunoService.excluirAluno(id)
+              location.reload();
             }
             this.alert.toastAlert(`Aluno excluido com sucesso`, 'danger', 'top')
           }
