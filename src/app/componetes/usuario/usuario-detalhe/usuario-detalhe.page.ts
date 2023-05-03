@@ -1,20 +1,16 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AbstractControl, AbstractControlOptions, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertService } from 'src/app/services/Alert.service';
-import { Usuario } from 'src/app/models/Usuario'; 
-import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
-  selector: 'app-usuario-detalhe',
+  selector: 'app-registration',
   templateUrl: './usuario-detalhe.page.html',
   styleUrls: ['./usuario-detalhe.page.scss'],
 })
-
 export class UsuarioDetalhePage implements OnInit {
-  usuarioId: number = 0;
+
   formUsuario: FormGroup;
-  usuarioService =  new UsuarioService();
   mensagens = {
     nome: [
       {tipo: 'required', mensagem: 'Nome é obrigatório.'},
@@ -37,7 +33,7 @@ export class UsuarioDetalhePage implements OnInit {
       {tipo: 'email', mensagem: 'Digite um e-mail valido.'}
     ]};
 
-    constructor(private formBuilder: FormBuilder, private alert: AlertService, private routerActive: ActivatedRoute, private router: Router, private changeDetectorRef: ChangeDetectorRef) {
+  constructor(private alert: AlertService, private formBuilder: FormBuilder,  private routerActive: ActivatedRoute, private router: Router) {
     this.formUsuario = this.formBuilder.group({
       nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(70)]],
       login: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
@@ -54,16 +50,9 @@ export class UsuarioDetalhePage implements OnInit {
     this.carregarUsuario();
   }
 
-  get f(): any {
-    return this.formUsuario.controls;
-  }
   cadastrarUsuario(){
-    const usuario = new Usuario(this.f.nome.value, this.f.login.value, this.f.email.value, this.f.senha.value, this.f.senhaConfirmacao.value, '../../../../assets/img/user.jpg');
-
-    this.usuarioService.criarUsuario(usuario);
-    this.alert.toastAlert('Usuario cadastrado com sucesso', 'success', 'top');
-    this.changeDetectorRef.detectChanges();
-    this.router.navigateByUrl('/usuario');
+    this.alert.toastAlert('Usuário cadastrado com sucesso', 'success', 'top');
+    this.router.navigate(['/usuario']);
   }
 
   toggleMostrarSenha() {
@@ -74,20 +63,12 @@ export class UsuarioDetalhePage implements OnInit {
     this.mostrarSenhaConfiirma = !this.mostrarSenhaConfiirma;
   }
 
-  public carregarUsuario(){
-    const id =  this.routerActive.snapshot.paramMap.get('id') ?? '9999';
-    const usuario = this.usuarioService.selecionarUsuarioPorId(id);
-    if (id === '9999'){
-      this.limparFormulario();
-    }else {
-      this.f.nome.value = usuario?.nome;
-      this.f.senhavalue = usuario?.senha;
-      this.f.senhaConfirmacao.value = usuario?.senhaConfirmacao;
-      this.f.email.value = usuario?.email;
-    }
+  get f(): any {
+    return this.formUsuario.controls;
   }
 
-  limparFormulario() {
-    this.formUsuario.reset();
+  public carregarUsuario(){
+    const id =  this.routerActive.snapshot.paramMap.get('id');
+    console.log(id);
   }
 }
