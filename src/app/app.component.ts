@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -6,11 +7,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   public appPages = [
-    { title: 'Calendario', url: '/folder/Calendario', icon: 'calendar' },
+    { title: 'Home', url: '/menu', icon: 'home' },
     { title: 'Alunos', url: '/aluno', icon: 'people' },
     { title: 'Usuários', url: '/usuario', icon: 'person-add' },
     { title: 'Configurações', url: '/configuration', icon: 'cog' },
     { title: 'Sair', url: '/', icon: 'exit' }
   ];
-  constructor() {}
+  constructor(private router: Router) {}
+
+  redirectMenu(){
+    this.router.navigate(['/menu']);
+  }
 }

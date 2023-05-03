@@ -1,0 +1,42 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card class="alunos" (click)="redirectAlunos()">
+    <ion-card-header>
+      <ion-icon name="people" size="medium"></ion-icon>
+      <ion-card-title>Alunos</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Gerenciar alunos
+    </ion-card-content>
+
+  </ion-card>
+
+  <ion-card class="usuarios" (click)="redirectUsuarios()">
+    <ion-card-header>
+      <ion-icon name="person-add" size="medium"></ion-icon>
+      <ion-card-title>Usuários</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      Gerenciar usuários
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="configuracoes" (click)="redirectConfig()">
+    <ion-card-header>
+      <ion-icon name="cog" size="medium"></ion-icon>
+      <ion-card-title>Configurações</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      Configurações gerais.
+    </ion-card-content>
+  </ion-card>
+</ion-content>

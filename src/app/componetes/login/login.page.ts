@@ -41,7 +41,7 @@ export class LoginPage implements OnInit {
 
   validaLogin() {
     if (this.auth.validateLogin(this.formLogin.get('login')?.value, this.formLogin.get('senha')?.value)) {
-      this.router.navigate(['/folder/Aulas']);
+      this.router.navigate(['/menu']);
       this.alert.toastAlert(`Bem vindo ${this.formLogin.get('login')?.value}`, 'success', 'top')
     } else {
       this.alert.toastAlert('Login/Senha inválido', 'danger', 'top')

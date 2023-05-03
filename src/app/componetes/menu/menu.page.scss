@@ -1,0 +1,40 @@
+ion-content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding: 1rem;
+}
+
+ion-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+ion-card-header {
+  background-color: #9d9d9d;
+  padding: 1rem;
+  border-bottom: 1px solid #ccc;
+}
+
+ion-card-title {
+  font-size: 0.88rem;
+  color:#fff;
+}
+
+ion-card-content {
+  padding: 1rem;
+}
+
+ion-icon {
+  float: right;
+  color: black;
+}
+
+.alunos{
+  width: 44%;
+  float: left;
+}
+
+.usuarios{
+  width: 44%;
+}
