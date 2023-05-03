@@ -57,7 +57,7 @@ export class AlunoDetalhePage implements OnInit {
   }
 
   public cadastrarAluno(){
-    const aluno = new Aluno(this.f.nome.value, this.f.cpf.value, new Date(), this.f.sexo.value, this.f.email.value, 1, '../../../../assets/img/humberto.jpg');
+    const aluno = new Aluno(this.f.nome.value, this.f.cpf.value, new Date(), this.f.sexo.value, this.f.email.value, 1, '../../../../assets/img/user.jpg');
 
     this.alunoService.criarAluno(aluno);
     this.alert.toastAlert('Aluno cadastrado com sucesso', 'success', 'top');
