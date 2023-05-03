@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { AlertService } from 'src/app/services/Alert.service';
+import { UsuarioService } from 'src/app/services/usuario.service';
+import { Usuario } from 'src/app/models/Usuario';
+import { IonRouterOutlet } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-usuario',
@@ -9,17 +13,17 @@ import { AlertService } from 'src/app/services/Alert.service';
   styleUrls: ['./usuario.page.scss'],
 })
 export class UsuarioPage implements OnInit {
-  usuarios: { id: number, nome: string, email: string, img: string}[] = [  
-    { id: 1, nome: 'Humberto Ramone', email: 'humberto@hrsolution.com.br', img: '../../../../assets/img/humberto.jpg'}, 
-    { id: 2, nome: 'Vanessa Carvalho', email: 'vanessa@yahoo.com.br', img: '../../../../assets/img/van.jpg'}, 
-    { id: 3, nome: 'Laryssa Laysa', email: 'laryssa@gmail.com', img: '../../../../assets/img/lary.jpg'}, 
-    { id: 4, nome: 'Samuel Carvalho', email: 'samuel@hotmail.com.br' , img: '../../../../assets/img/samuel.jpg'},
-    { id: 5, nome: 'Marcela Matos', email: 'marcela.matos@uol.com.br', img: '../../../../assets/img/marcela.jpg'}
-  ];
+  handlerMessage = '';
+  usuario: Usuario[] = [];
+  usuarioService = new UsuarioService();
 
-  constructor(private router: Router, private alertController: AlertController, private alert: AlertService) { }
+
+  constructor(private router: Router, private alertController: AlertController, private alert: AlertService) { 
+  this.usuario = this.usuarioService.obterUsuario();
+  }
 
   ngOnInit() {
+  this.usuario = this.usuarioService.obterUsuario();
   }
 
   public redirect() {
@@ -34,7 +38,7 @@ export class UsuarioPage implements OnInit {
     event.stopPropagation();
     const alert = await this.alertController.create({
       header: `${nome}`,
-      message: `Deseja excluir o aluno ?`,
+      message: `Deseja excluir o usuario ?`,
       buttons: [
         {
           text: 'Cancelar',
@@ -48,11 +52,12 @@ export class UsuarioPage implements OnInit {
           text: 'Excluir',
           cssClass: 'alert-button',
           handler: () => {
-            const index = this.usuarios.findIndex(a => a.id === id);
+            const index = this.usuario.findIndex(a => a.id === id);
             if (index >= 0) {
-              this.usuarios.splice(index, 1);
+              this.usuarioService.excluirUsuario(id)
+              location.reload();
             }
-            this.alert.toastAlert(`Usuário excluido com sucesso`, 'danger', 'top')
+            this.alert.toastAlert(`Usuario excluido com sucesso`, 'danger', 'top')
           }
         }
       ]
