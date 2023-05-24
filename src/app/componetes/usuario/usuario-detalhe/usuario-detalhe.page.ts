@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { AbstractControl, AbstractControlOptions, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertService } from 'src/app/services/Alert.service';
-import { Usuario } from 'src/app/models/Usuario'; 
+import { Usuario } from 'src/app/models/Usuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
@@ -58,7 +58,7 @@ export class UsuarioDetalhePage implements OnInit {
     return this.formUsuario.controls;
   }
   cadastrarUsuario(){
-    const usuario = new Usuario(this.f.nome.value, this.f.login.value, this.f.email.value, this.f.senha.value, this.f.senhaConfirmacao.value, '../../../../assets/img/user.jpg');
+    const usuario = new Usuario(1,this.f.nome.value, this.f.login.value, this.f.email.value, this.f.senha.value, this.f.senhaConfirmacao.value, '../../../../assets/img/user.jpg');
 
     this.usuarioService.criarUsuario(usuario);
     this.alert.toastAlert('Usuario cadastrado com sucesso', 'success', 'top');
