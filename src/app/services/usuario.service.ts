@@ -16,12 +16,23 @@ export class UsuarioService {
     }
   
     atualizarUsuario(usuario: Usuario): void {
+      console.log(usuario.id);
+    
       const index = this.usuario.findIndex(a => a.id === usuario.id);
       if (index !== -1) {
         this.usuario[index] = usuario;
-        localStorage.setItem('usuario', JSON.stringify(this.usuario));
+    
+        try {
+          localStorage.setItem('usuario', JSON.stringify(this.usuario));
+          console.log('Registro atualizado com sucesso!');
+        } catch (error) {
+          console.log('Erro ao atualizar o registro no localStorage:', error);
+        }
+      } else {
+        console.log('Pau no index');
       }
     }
+    
   
     excluirUsuario(id: number): void {
       this.usuario = this.usuario.filter(a => a.id !== id);

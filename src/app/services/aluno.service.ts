@@ -22,6 +22,23 @@ export class AlunoService {
         localStorage.setItem('alunos', JSON.stringify(this.alunos));
       }
     }
+
+    atualizarUsuario(aluno: Aluno): void {
+      console.log(aluno.id);
+    
+      const index = this.alunos.findIndex(a => a.id === aluno.id);
+      if (index !== -1) {
+        this.alunos[index] = aluno;
+    
+        try {
+          localStorage.setItem('alunos', JSON.stringify(this.alunos));
+          console.log('Aluno atualizado');
+
+        } catch (error) {
+          console.log('Erro ao atualizar o registro no localStorage:', error);
+        }
+      }
+    }
   
     excluirAluno(id: number): void {
       this.alunos = this.alunos.filter(a => a.id !== id);

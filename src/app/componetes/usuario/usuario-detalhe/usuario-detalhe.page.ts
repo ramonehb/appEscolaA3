@@ -15,6 +15,7 @@ export class UsuarioDetalhePage implements OnInit {
   usuarioId: number = 0;
   formUsuario: FormGroup;
   usuarioService =  new UsuarioService();
+  textoBotao: string = 'Cadastrar';
   mensagens = {
     nome: [
       {tipo: 'required', mensagem: 'Nome é obrigatório.'},
@@ -60,8 +61,15 @@ export class UsuarioDetalhePage implements OnInit {
   cadastrarUsuario(){
     const usuario = new Usuario(1,this.f.nome.value, this.f.login.value, this.f.email.value, this.f.senha.value, this.f.senhaConfirmacao.value, '../../../../assets/img/user.jpg');
 
-    this.usuarioService.criarUsuario(usuario);
-    this.alert.toastAlert('Usuario cadastrado com sucesso', 'success', 'top');
+    let bNovo = this.textoBotao === 'Cadastrar';
+    if (bNovo){
+      this.usuarioService.criarUsuario(usuario);
+    }
+    else {
+      usuario.id = this.usuarioId;
+      this.usuarioService.atualizarUsuario(usuario);
+    }
+    this.alert.toastAlert(bNovo ? 'Usuario cadastrado com sucesso' : 'Atualizado com sucesso', 'success', 'top');
     this.changeDetectorRef.detectChanges();
     this.router.navigateByUrl('/usuario');
   }
@@ -77,12 +85,17 @@ export class UsuarioDetalhePage implements OnInit {
   public carregarUsuario(){
     const id =  this.routerActive.snapshot.paramMap.get('id') ?? '9999';
     const usuario = this.usuarioService.selecionarUsuarioPorId(id);
+    
     if (id === '9999'){
       this.limparFormulario();
     }else {
+      this.textoBotao = 'Atualizar';
+
+      this.usuarioId = parseInt(id);
       this.f.nome.value = usuario?.nome;
-      this.f.senhavalue = usuario?.senha;
-      this.f.senhaConfirmacao.value = usuario?.senhaConfirmacao;
+      this.f.login.value = usuario?.login;
+      this.f.senha.value = usuario?.senha;
+      this.f.senhaConfirmacao.value = usuario?.senha;
       this.f.email.value = usuario?.email;
     }
   }

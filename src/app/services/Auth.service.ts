@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { UsuarioService } from './usuario.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +11,13 @@ constructor() { }
     var usuarioValido = false;
     for(const usuario of usuarios){
       usuarioValido = (username === usuario.login && password === usuario.senha) || username === "admin" && password === "123";
+      if (usuarioValido){
+        return usuarioValido;
+      }
     }
+
+    usuarioValido = username === "admin" && password === "123"
+    
     return usuarioValido;
   }
 }

@@ -14,6 +14,8 @@ import { AlunoService } from 'src/app/services/aluno.service';
 export class AlunoDetalhePage implements OnInit {
   alunoId: number = 0;
   formCadastroAluno: FormGroup;
+  raAluno: number | undefined;
+  textoBotao: string = 'Cadastrar';
   alunoService =  new AlunoService();
   mensagens = {
     nome: [
@@ -56,11 +58,32 @@ export class AlunoDetalhePage implements OnInit {
     return this.formCadastroAluno.controls;
   }
 
-  public cadastrarAluno(){
-    const aluno = new Aluno(this.f.nome.value, this.f.cpf.value, new Date(), this.f.sexo.value, this.f.email.value, 1, '../../../../assets/img/user.jpg');
+  gerarNumeroAleatorio(): number {
+    let numero = '';
+    const caracteres = '0123456789';
+  
+    for (let i = 0; i < 8; i++) {
+      const indiceAleatorio = Math.floor(Math.random() * caracteres.length);
+      numero += caracteres.charAt(indiceAleatorio);
+    }
+  
+    return parseInt(numero);
+  }
 
-    this.alunoService.criarAluno(aluno);
-    this.alert.toastAlert('Aluno cadastrado com sucesso', 'success', 'top');
+  public cadastrarAluno(){
+
+    const ra = this.gerarNumeroAleatorio();
+    const aluno = new Aluno(this.f.nome.value, this.f.cpf.value, new Date(), this.f.sexo.value, this.f.email.value, 1, '../../../../assets/img/user.jpg', ra);
+    
+    let bNovo = this.textoBotao === 'Cadastrar';
+    if (bNovo){
+      this.alunoService.criarAluno(aluno);
+    }
+    else {
+      aluno.id = this.alunoId;
+      this.alunoService.atualizarAluno(aluno);
+    }
+    this.alert.toastAlert(bNovo ? 'Aluno cadastrado com sucesso' : 'Aluno atualizado com sucesso' , 'success', 'top');
     this.changeDetectorRef.detectChanges();
     this.router.navigateByUrl('/aluno');
   }
@@ -68,15 +91,19 @@ export class AlunoDetalhePage implements OnInit {
   public carregarAluno(){
     const id =  this.routerActive.snapshot.paramMap.get('id') ?? '9999';
     const aluno = this.alunoService.selecionarAlunoPorId(id);
-    
+
     if (id === '9999'){
       this.limparFormulario();
     }else {
+      this.textoBotao = 'Atualizar';
+
+      this.alunoId = parseInt(id);
       this.f.nome.value = aluno?.nome;
       this.f.cpf.value = aluno?.cpf;
-      this.f.dataNascimento.patchValue(aluno?.dataNascimento);
+      this.f.dataNascimento.setValue(aluno?.dataNascimento.toString().substring(0, 10));
       this.f.sexo.value = aluno?.sexo;
       this.f.email.value = aluno?.email;
+      this.raAluno = aluno?.ra;
     }
   }
 

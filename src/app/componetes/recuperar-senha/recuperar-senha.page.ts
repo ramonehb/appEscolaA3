@@ -26,11 +26,31 @@ export class RecuperarSenhaPage implements OnInit {
   }
 
   recuperarSenha(){
-    this.alert.toastAlert('E-mail enviado', 'success', 'top');
-    this.router.navigate(['/login']);
+    let email = this.formEsqueciSenha.get('email')?.value;
+
+    if (this.validaEmail(email)){
+      this.alert.toastAlert('E-mail enviado', 'success', 'top');
+      this.router.navigate(['/login']);    
+    }
+    else {
+      this.alert.toastAlert('E-mail não localizado', 'danger', 'top');
+    }
   }
 
   get f(): any {
     return this.formEsqueciSenha.controls;
+  }
+
+  validaEmail(email: String): boolean {
+    let valido = false;
+
+    for(const usuario of JSON.parse(localStorage.getItem('usuario') || '[]')){
+      if (usuario.email === email){
+        valido = true;
+        return valido;
+      }
+    }
+
+    return valido;
   }
 }
