@@ -4,7 +4,6 @@ import { AlertController } from '@ionic/angular';
 import { AlertService } from 'src/app/services/alert.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { Usuario } from 'src/app/models/Usuario';
-import { IonRouterOutlet } from '@ionic/angular';
 
 
 @Component({

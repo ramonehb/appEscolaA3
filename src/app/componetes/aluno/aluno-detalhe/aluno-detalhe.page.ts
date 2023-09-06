@@ -1,8 +1,8 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertService } from 'src/app/services/alert.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Aluno } from 'src/app/models/Aluno'; // Substitua o caminho pelo local onde o arquivo aluno.ts está localizado em seu projeto
+import { Aluno } from 'src/app/models/Aluno';
 import { AlunoService } from 'src/app/services/aluno.service';
 @Component({
   selector: 'app-aluno-detalhe',

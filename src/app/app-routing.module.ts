@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AlunoDetalhePage } from './componetes/aluno/aluno-detalhe/aluno-detalhe.page';
 import { AuthGuard } from './helpers/authGuard';
 
 const routes: Routes = [

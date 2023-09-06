@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd} from '@angular/router';
+import { Router} from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { AlunoService } from 'src/app/services/aluno.service';
 import { Aluno } from 'src/app/models/Aluno';
