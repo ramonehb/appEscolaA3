@@ -11,7 +11,7 @@ export class AppComponent {
     { title: 'Alunos', url: '/aluno', icon: 'people' },
     { title: 'Usuários', url: '/usuario', icon: 'person-add' },
     { title: 'Configurações', url: '/configuration', icon: 'cog' },
-    { title: 'Sair', url: '/', icon: 'exit' }
+    { title: 'Sair', url: '/login', icon: 'exit' }
   ];
   constructor(private router: Router) {}
 

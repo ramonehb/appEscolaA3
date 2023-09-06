@@ -32,7 +32,9 @@
         <ion-row>
           <ion-col>
             <ion-button expand="block" size="full" type="submit" (click)="validaLogin()" [disabled]="!formLogin.valid">Entrar</ion-button>
-            <a [routerLink]="['/recuperar-senha']" class="small-text">Esqueceu a senha?</a>
+            <div class="div-esqueceu-senha">
+              <a [routerLink]="['/recuperar-senha']" >Esqueceu a senha?</a>
+            </div>
           </ion-col>
         </ion-row>
       </form>
