@@ -2,7 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { AlertService } from 'src/app/services/Alert.service';
+import { AlertService } from 'src/app/services/alert.service';
 import { TokenService } from 'src/app/services/token.service';
 import { Token } from 'src/app/models/Token';
 import { TokenRetorno } from 'src/app/models/TokenRetorno';

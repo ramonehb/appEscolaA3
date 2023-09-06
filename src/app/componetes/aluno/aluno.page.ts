@@ -3,7 +3,7 @@ import { Router, NavigationEnd} from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { AlunoService } from 'src/app/services/aluno.service';
 import { Aluno } from 'src/app/models/Aluno';
-import { AlertService } from 'src/app/services/Alert.service';
+import { AlertService } from 'src/app/services/alert.service';
 import { IonRouterOutlet } from '@ionic/angular';
 
 

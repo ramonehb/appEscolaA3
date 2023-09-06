@@ -10,7 +10,8 @@ import { TokenRetorno } from '../models/TokenRetorno';
 export class TokenService {
   constructor(private http: HttpClient) { }
 
-  private baseURL = 'https://localhost:7228/api';
+  //private baseURL = 'https://localhost:7228/api';
+  private baseURL = 'http://localhost:5101/api';
 
   public post(token: Token): Observable<TokenRetorno>{
     const headers = new HttpHeaders({

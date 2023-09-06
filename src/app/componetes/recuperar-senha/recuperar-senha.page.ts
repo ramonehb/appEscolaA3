@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertService } from 'src/app/services/Alert.service';
+import { AlertService } from 'src/app/services/alert.service';
 
 @Component({
   selector: 'app-recuperar-senha',
