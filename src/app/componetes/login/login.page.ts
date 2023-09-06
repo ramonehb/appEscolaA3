@@ -1,8 +1,11 @@
 import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/Auth.service';
-import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { AlertService } from 'src/app/services/Alert.service';
+import { TokenService } from 'src/app/services/token.service';
+import { Token } from 'src/app/models/Token';
+import { TokenRetorno } from 'src/app/models/TokenRetorno';
 
 @Component({
   selector: 'app-login',
@@ -29,6 +32,7 @@ export class LoginPage implements OnInit {
   constructor(private auth: AuthService,
               private router: Router,
               private alert: AlertService,
+              private tokenService: TokenService,
               private formBuilder: FormBuilder) {
     this.formLogin = this.formBuilder.group({
       login: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(15)])],
@@ -40,12 +44,21 @@ export class LoginPage implements OnInit {
   }
 
   validaLogin() {
-    if (this.auth.validateLogin(this.formLogin.get('login')?.value, this.formLogin.get('senha')?.value)) {
-      this.router.navigate(['/menu']);
-      this.alert.toastAlert(`Bem vindo ${this.formLogin.get('login')?.value}`, 'success', 'top')
-    } else {
-      this.alert.toastAlert('Login/Senha inválido', 'danger', 'top')
-    }
+
+    var user = this.formLogin.get('login')?.value;
+    var password = this.formLogin.get('senha')?.value;
+
+    this.tokenService.post(new Token(user, password)).subscribe(
+      (tokenRetorno: TokenRetorno) => {
+        this.alert.toastAlert(`Bem vindo ${user}`, 'success', 'top')
+        sessionStorage.setItem('token', JSON.stringify(tokenRetorno));
+        this.router.navigate(['/menu']);
+      },
+      (error) => {
+        console.error('Erro ao obter token:', error);
+        this.alert.toastAlert(error.error, 'danger', 'top')
+      }
+    );
   }
 
   get f(): any {
