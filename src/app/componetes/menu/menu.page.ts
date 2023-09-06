@@ -7,22 +7,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./menu.page.scss'],
 })
 export class MenuPage implements OnInit {
+  slideOptions = {
+    initialSlide: 0,
+  };
 
   constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
-  redirectAlunos(){
-    this.router.navigate(['/aluno']);
+  redirect(rota: string){
+    this.router.navigate([`/${rota}`]);
   }
-
-  redirectUsuarios(){
-    this.router.navigate(['/usuario']);
-  }
-
-  redirectConfig(){
-    this.router.navigate(['/configuration']);
-  }
-
 }

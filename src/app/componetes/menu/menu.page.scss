@@ -1,13 +1,9 @@
-ion-content {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  padding: 1rem;
-}
 
 ion-card {
   border: 1px solid #ccc;
   border-radius: 8px;
+  height: 15rem; 
+  width: 100%;
 }
 
 ion-card-header {
@@ -17,7 +13,7 @@ ion-card-header {
 }
 
 ion-card-title {
-  font-size: 0.88rem;
+  font-size: 1.1rem;
   color:#fff;
 }
 
@@ -30,11 +26,3 @@ ion-icon {
   color: black;
 }
 
-.alunos{
-  width: 44%;
-  float: left;
-}
-
-.usuarios{
-  width: 44%;
-}

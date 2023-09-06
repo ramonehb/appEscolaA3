@@ -1,4 +1,5 @@
 import { Component, OnInit} from '@angular/core';
+import { Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { AlertService } from 'src/app/services/Alert.service';
@@ -33,7 +34,8 @@ export class LoginPage implements OnInit {
               private alert: AlertService,
               private tokenService: TokenService,
               private formBuilder: FormBuilder,
-              private sessionService: SessionService) {
+              private sessionService: SessionService,
+              private render: Renderer2,) {
     this.formLogin = this.formBuilder.group({
       login: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(25)])],
       senha: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(20)])]
@@ -41,7 +43,9 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {
-      this.sessionService.logout();
+    var theme = sessionStorage.getItem('color-theme');
+    this.render.setAttribute(document.body, 'color-theme',  theme === null || theme === 'light' ? 'light' : theme);
+    this.sessionService.logout();
   }
 
   validaLogin() {
